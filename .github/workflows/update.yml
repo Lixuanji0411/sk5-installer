@@ -1,0 +1,14 @@
+   name: Auto Update
+   on:
+     push:
+       branches: [ main ]
+   jobs:
+     deploy:
+       runs-on: ubuntu-latest
+       steps:
+       - uses: actions/checkout@v3
+       - name: Push to CDN
+         run: |
+           git config --global user.name "AutoUpdater"
+           git config --global user.email "update@example.com"
+           git push https://${{ secrets.DEPLOY_TOKEN }}@github.com/你的用户名/sk5-installer.git main
